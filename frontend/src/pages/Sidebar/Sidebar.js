@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './Sidebar.css'
+import CustomeLink from "./CustomeLink";
 import SidebarOptions from "./SidebarOptions";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import HomeIcon from "@mui/icons-material/Home";
@@ -34,14 +35,30 @@ const Sidebar = ({ handleLogout, user }) => {
   return (
     <div className='sidebar'>
       <TwitterIcon className="sidebar__twitterIcon" />
-      <SidebarOptions active Icon={HomeIcon} text="Home" />
-      <SidebarOptions Icon={SearchIcon} text="Explore" />
-      <SidebarOptions Icon={NotificationsNoneIcon} text="Notifications" />
-      <SidebarOptions Icon={MailOutlineIcon} text="Messages" />
-      <SidebarOptions Icon={BookmarkBorderIcon} text="Bookmarks" />
-      <SidebarOptions Icon={ListAltIcon} text="Lists" />
-      <SidebarOptions Icon={PermIdentityIcon} text="Profile" />
-      <SidebarOptions Icon={MoreIcon} text="More" />
+      <CustomeLink to='/home/feed'>
+        <SidebarOptions Icon={HomeIcon} text="Home" />
+      </CustomeLink>
+      <CustomeLink to='/home/explore'>
+        <SidebarOptions Icon={SearchIcon} text="Explore" />
+      </CustomeLink>
+      <CustomeLink to='/home/notifications'>
+        <SidebarOptions Icon={NotificationsNoneIcon} text="Notifications" />
+      </CustomeLink>
+      <CustomeLink to='/home/messages'>
+        <SidebarOptions Icon={MailOutlineIcon} text="Messages" />
+      </CustomeLink>
+      <CustomeLink to='/home/bookmarks'>
+        <SidebarOptions Icon={BookmarkBorderIcon} text="Bookmarks" />
+      </CustomeLink>
+      <CustomeLink to='/home/lists'>
+        <SidebarOptions Icon={ListAltIcon} text="Lists" />
+      </CustomeLink>
+      <CustomeLink to='/home/profile'>
+        <SidebarOptions Icon={PermIdentityIcon} text="Profile" />
+      </CustomeLink>
+      <CustomeLink to='/home/more'>
+        <SidebarOptions Icon={MoreIcon} text="More" />
+      </CustomeLink>
       <Button variant="outlined" className="sidebar__tweet" fullWidth>
         Tweet
       </Button>

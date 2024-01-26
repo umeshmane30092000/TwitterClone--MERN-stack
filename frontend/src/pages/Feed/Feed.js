@@ -4,7 +4,7 @@ import './Feed.css'
 const Feed = () => {
   return (
     <div>
-    <h1>feed</h1>
+    <h1> welcome umesh to feed</h1>
       
     </div>
   )
