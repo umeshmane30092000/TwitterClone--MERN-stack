@@ -1,11 +1,14 @@
 import React from 'react'
 import './Feed.css'
+import TweetBox from './TweetBox/TweetBox'
 
 const Feed = () => {
   return (
-    <div>
-    <h1> welcome umesh to feed</h1>
-      
+    <div className="feed">
+      <div className="feed__header">
+        <h2>Home</h2>
+      </div>
+      <TweetBox />
     </div>
   )
 }
