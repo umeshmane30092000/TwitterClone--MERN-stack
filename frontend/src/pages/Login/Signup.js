@@ -5,6 +5,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import { useCreateUserWithEmailAndPassword  , useSignInWithGoogle} from 'react-firebase-hooks/auth'
 import auth from '../../firebase.init'
 import GoogleButton from "react-google-button";
+import axios from 'axios'
 import "./Login.css"
 
 const Signup = () => {
@@ -39,9 +40,15 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email, password);
-        const user = await createUserWithEmailAndPassword(email, password);
-        console.log(user);
+        await createUserWithEmailAndPassword(email, password);
+        const user = {
+            username: username,
+            name: name,
+            email: email,
+        }
+        
+        axios.post(`http://localhost:5000/register`, user);
+       
 
     }
 

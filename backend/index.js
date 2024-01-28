@@ -35,6 +35,12 @@ async function run() {
             const post = (await postCollection.find().toArray())
             res.send(post);
         })
+
+          // get
+          app.get('/user', async (req, res) => {
+            const user = await userCollection.find().toArray();
+            res.send(user);
+        })
         
         app.post('/post', async (req, res) => {
             const post = req.body;
@@ -42,6 +48,13 @@ async function run() {
             res.send(result);
         })
 
+          // post
+          app.post('/register', async (req, res) => {
+            const user = req.body;
+            const result = await userCollection.insertOne(user);
+            res.send(result);
+        })
+         
        
 
 
