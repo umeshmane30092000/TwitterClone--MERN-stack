@@ -30,14 +30,13 @@ async function run() {
         const postCollection = client.db("database").collection("posts"); // this collection is for team-ekt
         const userCollection = client.db("database").collection("users"); // this collection is for team-srv
 
-       
+
         app.get('/post', async (req, res) => {
-            const post = (await postCollection.find().toArray())
+            const post = (await postCollection.find().toArray()).reverse();
             res.send(post);
         })
-
-          // get
-          app.get('/user', async (req, res) => {
+        // get
+        app.get('/user', async (req, res) => {
             const user = await userCollection.find().toArray();
             res.send(user);
         })
@@ -47,25 +46,25 @@ async function run() {
             const user = await userCollection.find({ email: email }).toArray();
             res.send(user);
         })
-        
+
         app.post('/post', async (req, res) => {
             const post = req.body;
             const result = await postCollection.insertOne(post);
             res.send(result);
         })
 
-          // post
-          app.post('/register', async (req, res) => {
+        // post
+        app.post('/register', async (req, res) => {
             const user = req.body;
             const result = await userCollection.insertOne(user);
             res.send(result);
         })
-         
-       
 
 
 
-        
+
+
+
     } catch (error) {
         console.log(error);
     }
