@@ -4,7 +4,7 @@ import { Avatar, Button } from "@mui/material";
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import axios from 'axios';
 import useLoggedInUser from "../../../hooks/useLoggedInUser";
-import { useAuthState} from 'react-firebase-hooks/auth'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import auth from "../../../firebase.init";
 
 const TweetBox = () => {
@@ -54,7 +54,7 @@ const TweetBox = () => {
             setName(user?.displayName)
             setUsername(email?.split('@')[0])
         }
-     
+
         if (name) {
             const userPost = {
                 profilePhoto: userProfilePic,
@@ -65,6 +65,8 @@ const TweetBox = () => {
                 email: email,
             }
             console.log(userPost);
+            setPost('')
+            setImageURL('')
 
             fetch('http://localhost:5000/post', {
                 method: "POST",
@@ -107,8 +109,8 @@ const TweetBox = () => {
         // }
 
     }
-  
-    
+
+
     return (
         <div className="tweetBox">
             <form onSubmit={handleTweet}>
@@ -118,6 +120,8 @@ const TweetBox = () => {
                         type="text"
                         placeholder="What's happening?"
                         onChange={(e) => setPost(e.target.value)}
+                        value={post}
+                        required
 
                     />
                 </div>
