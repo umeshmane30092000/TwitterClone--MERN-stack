@@ -1,10 +1,15 @@
 import React from 'react'
 import '../Page.css'
+import { useAuthState} from 'react-firebase-hooks/auth'
+import auth from '../../firebase.init';
+import MainProfile from './MainProfile/MainProfile'
 
 function Profile() {
+    const [user] = useAuthState(auth);
     return (
-        <div className='page'>
-            <h2 className='pageTitle'>Welcome to Profile page</h2>
+        <div className='profilePage'>
+            <MainProfile user={user} />
+            
         </div>
     )
 }
