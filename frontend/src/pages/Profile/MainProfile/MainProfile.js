@@ -148,7 +148,7 @@ const MainProfile = ({ user }) => {
                     </h3>
                     <p className='usernameSection'>@{username}</p>
                   </div>
-                   <EditProfile/>
+                  <EditProfile user={user} loggedInUser={loggedInUser} />
                   </div>
                   <div className='infoContainer'>
                     {loggedInUser[0]?.bio ? <p>{loggedInUser[0].bio}</p> : ''}
