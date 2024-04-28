@@ -14,12 +14,14 @@ import Bookmarks from './pages/Bookmarks/Bookmarks';
 import Lists from './pages/Lists/Lists';
 import Profile from './pages/Profile/Profile';
 import More from './pages/More/More';
+import PremiumVerification from './pages/PremiumVerification';
+import SubscriptionComponent from './pages/Subscription/SubscriptionComponent';
+import ChatApp from './pages/Chat/ChatApp'
 
 
 function App() {
   return (
     <div className="App">
-
     <BrowserRouter>
       <Routes>
        <Route path = '/' element={<ProtectedRoute><Home/></ProtectedRoute>} >
@@ -36,13 +38,14 @@ function App() {
             <Route path="more" element={<More />} />
 
        </Route>
-     
+       <Route path = '/verify' element = {<PremiumVerification/>} />
+       <Route path = '/createsubscription' element = {<SubscriptionComponent/>} />
+       <Route path = '/chat' element= {<ChatApp/>}/>
        <Route path = '/login' element = {<Login/>} />
        <Route path = '/signup' element = {<Signup/>} />
        <Route path = '/page-loading' element = {<PageLoading/>} />
       </Routes>
     </BrowserRouter>
-      
     </div>
   );
 }

@@ -17,6 +17,13 @@ import { Avatar, Button, IconButton, ListItemIcon, MenuItem } from "@mui/materia
 import Menu from '@mui/material/Menu';
 import Divider from '@mui/material/Divider';
 import useLoggedInUser from "../../hooks/useLoggedInUser";
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import { useDispatch , useSelector} from 'react-redux';
+import {premiumVerify}  from '../../redux/premium/premiumSlice'
+import VerifiedIcon from '@mui/icons-material/Verified';
+import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
+import ChatIcon from '@mui/icons-material/Chat';
+
 
 
 
@@ -24,6 +31,8 @@ const Sidebar = ({ handleLogout, user }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
   const [loggedInUser] = useLoggedInUser();
+  const {ispremium} =useSelector((state) => state.premium);
+  const dispatch = useDispatch();
 
   const userProfilePic = loggedInUser[0]?.profileImage ? loggedInUser[0]?.profileImage : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
 
@@ -61,6 +70,16 @@ const Sidebar = ({ handleLogout, user }) => {
       <CustomeLink to='/home/profile'>
         <SidebarOptions Icon={PermIdentityIcon} text="Profile" />
       </CustomeLink>
+      <CustomeLink to='/verify'>
+        <SidebarOptions Icon={WorkspacePremiumIcon} text="Premium" />
+      </CustomeLink>
+      <CustomeLink to='/createsubscription'>
+        <SidebarOptions Icon={SubscriptionsIcon} text="Subscription" />
+      </CustomeLink>
+      <CustomeLink to="/chat">
+      <SidebarOptions Icon={ChatIcon} text="Chat"/>
+      </CustomeLink>
+      
       <CustomeLink to='/home/more'>
         <SidebarOptions Icon={MoreIcon} text="More" />
       </CustomeLink>
@@ -69,6 +88,18 @@ const Sidebar = ({ handleLogout, user }) => {
       </Button>
       <div className="Profile__info">
         <Avatar src={userProfilePic} />
+        {ispremium && (
+          <div className="premium-verification-result">
+            {ispremium != null ? (
+              <VerifiedIcon
+                alt="Verified Premium Account"
+                style={{ color: 'blue' }} // Adjust color as needed
+              />
+            ) : (
+              <p>Failed to premium</p>
+            )}
+          </div>
+        )}
         <div className="user__info">
           <h4>
             {loggedInUser[0]?.name ? loggedInUser[0].name : user && user[0].displayName}
@@ -88,7 +119,18 @@ const Sidebar = ({ handleLogout, user }) => {
         <Menu id="basic-menu" anchorEl={anchorEl} open={openMenu} onClick={handleClose} onClose={handleClose}>
           <MenuItem className="Profile__info1">
             <Avatar src={userProfilePic} />
-      
+            {ispremium && (
+          <div className="premium-verification-result">
+            {ispremium != null ? (
+              <VerifiedIcon
+                alt="Verified Premium Account"
+                style={{ color: 'blue' }} // Adjust color as needed
+              />
+            ) : (
+              <p>Failed to premium</p>
+            )}
+          </div>
+        )}
             <div className="user__info subUser__info">
               <div>
                 <h4>

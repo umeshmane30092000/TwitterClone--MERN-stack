@@ -1,0 +1,46 @@
+/* style.css */
+
+.premium-verification-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .premium-verification-heading {
+    text-align: center;
+  }
+  
+  .premium-verification-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .premium-verification-input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .premium-verification-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .premium-verification-result {
+    margin-top: 20px;
+  }
+  
+  /* Make it responsive */
+  @media (max-width: 768px) {
+    .premium-verification-container {
+      max-width: 100%;
+      padding: 0 15px;
+    }
+  }
+  

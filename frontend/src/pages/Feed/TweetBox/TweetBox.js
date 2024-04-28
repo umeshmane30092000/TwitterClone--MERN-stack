@@ -6,6 +6,9 @@ import axios from 'axios';
 import useLoggedInUser from "../../../hooks/useLoggedInUser";
 import { useAuthState } from 'react-firebase-hooks/auth'
 import auth from "../../../firebase.init";
+import { useDispatch, useSelector } from 'react-redux';
+import { premiumVerify } from '../../../redux/premium/premiumSlice'
+import VerifiedIcon from '@mui/icons-material/Verified';
 
 const TweetBox = () => {
     const [post, setPost] = useState('')
@@ -14,6 +17,9 @@ const TweetBox = () => {
     const [name, setName] = useState('');
     const [username, setUsername] = useState(' ');
     const [loggedInUser] = useLoggedInUser();
+
+    const { ispremium } = useSelector((state) => state.premium);
+    const dispatch = useDispatch();
     // console.log(loggedInUser)
     const [user] = useAuthState(auth);
     const email = user?.email;
@@ -115,7 +121,20 @@ const TweetBox = () => {
         <div className="tweetBox">
             <form onSubmit={handleTweet}>
                 <div className="tweetBox__input">
-                    <Avatar src={ loggedInUser[0]?.profileImage ? loggedInUser[0]?.profileImage : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"} />
+                    <Avatar src={loggedInUser[0]?.profileImage ? loggedInUser[0]?.profileImage : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"} />
+                    {ispremium && (
+                        <div className="premium-verification-result">
+                            {ispremium != null ? (
+                                <VerifiedIcon
+                                    alt="Verified Premium Account"
+                                    style={{ color: 'blue' }} // Adjust color as needed
+                                />
+                            ) : (
+                                <p>Failed to premium</p>
+                            )}
+                        </div>
+                    )}
+
                     <input
                         type="text"
                         placeholder="What's happening?"
